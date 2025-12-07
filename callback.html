@@ -11,9 +11,11 @@
   if (token) {
     localStorage.setItem('twitchAccessToken', token);
     alert('Login correcto. Regresa al juego.');
+    window.close();
   } else {
     alert('No se recibió token. Revisa scopes y client_id.');
   }
 </script>
 </body>
 </html>
+
