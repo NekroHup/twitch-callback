@@ -3,22 +3,22 @@
 <head><meta charset="utf-8"><title>Twitch Callback</title></head>
 <body>
 <script>
-  const hash = window.location.hash.substr(1);
-  const params = new URLSearchParams(hash);
-  const token = params.get("access_token");
+  
+const hash = window.location.hash.substr(1);
+const params = new URLSearchParams(hash);
+const token = params.get("access_token");
 
-  if (token) {
-    // Enviar el token a la ventana que abrió el OAuth
-    if (window.opener) {
-      window.opener.localStorage.setItem("twitchAccessToken", token);
-      alert("Login correcto. Ya puedes volver al juego.");
-      window.close();
-    } else {
+if (token && window.opener) {
+  window.opener.postMessage({ type: "TWITCH_TOKEN", token }, "*");
+  alert("Login correcto. Ya puedes volver al juego.");
+  window.close();
+} else
+{
       alert("No se pudo comunicar con el juego.");
-    }
-  }
+}
 </script>
 </body>
 </html>
+
 
 
