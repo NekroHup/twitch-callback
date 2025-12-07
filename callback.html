@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head><meta charset="utf-8"><title>Twitch Callback</title></head>
+<body>
+<script>
+  // Extrae el access_token del fragmento de la URL
+  const frag = location.hash.slice(1);
+  const params = new URLSearchParams(frag);
+  const token = params.get('access_token');
+
+  if (token) {
+    localStorage.setItem('twitchAccessToken', token);
+    alert('Login correcto. Regresa al juego.');
+  } else {
+    alert('No se recibió token. Revisa scopes y client_id.');
+  }
+</script>
+</body>
+</html>
